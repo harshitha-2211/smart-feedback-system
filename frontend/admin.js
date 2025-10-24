@@ -1,19 +1,19 @@
+// Dynamically determine base URL
+const BASE_URL = window.location.origin;
+
 document.addEventListener("DOMContentLoaded", async () => {
   const ctx = document.getElementById("sentimentChart").getContext("2d");
   const tableBody = document.getElementById("feedbacktablebody");
 
-  // Stat boxes
   const positiveBox = document.getElementById("positiveCount");
   const negativeBox = document.getElementById("negativeCount");
   const neutralBox = document.getElementById("neutralCount");
 
   try {
-    // ---- Fetch summary for chart and stats ----
-
-    const summaryResponse = await fetch("http://localhost:5000/api/feedback/summary");
+    // Fetch summary for chart and stats
+    const summaryResponse = await fetch(`${BASE_URL}/api/feedback/summary`);
     const summaryData = await summaryResponse.json();
 
-    // Update stat boxes
     positiveBox.textContent = summaryData.Positive || 0;
     negativeBox.textContent = summaryData.Negative || 0;
     neutralBox.textContent = summaryData.Neutral || 0;
@@ -21,17 +21,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     const sentimentLabels = Object.keys(summaryData);
     const sentimentValues = Object.values(summaryData);
 
-    // Draw chart
     new Chart(ctx, {
       type: "pie",
       data: {
         labels: sentimentLabels,
-        datasets: [
-          {
-            data: sentimentValues,
-            backgroundColor: ["#4caf50", "#f44336", "#9e9e9e"], // Green, Red, Gray
-          }
-        ],
+        datasets: [{
+          data: sentimentValues,
+          backgroundColor: ["#4caf50", "#f44336", "#9e9e9e"],
+        }],
       },
       options: {
         responsive: true,
@@ -46,42 +43,35 @@ document.addEventListener("DOMContentLoaded", async () => {
       },
     });
 
-    // ---- Fetch all feedback for table ----
-    const feedbackResponse = await fetch("http://localhost:5000/api/feedback/all");
-    console.log("Feedback API response:", feedbackResponse);
+    // Fetch all feedback for table
+    const feedbackResponse = await fetch(`${BASE_URL}/api/feedback/all`);
     const feedbackData = await feedbackResponse.json();
-        console.log("Feedback data:", feedbackData);
+
     tableBody.innerHTML = "";
 
-     if (feedbackData.length === 0) {
+    if (feedbackData.length === 0) {
       const emptyRow = document.createElement("tr");
       emptyRow.innerHTML = `<td colspan="5" class="placeholder">No feedback entries yet</td>`;
       tableBody.appendChild(emptyRow);
     } else {
-    feedbackData.forEach((item) => {
-      const row = document.createElement("tr");
-      row.innerHTML = `
-        <td class="name-column">${item.name}</td>
-        <td class="email-column">${item.email}</td>
-        <td class="message-column">${item.message}</td>
-        <td style="color:${
-          item.sentiment === "Positive"
-            ? "green"
-            : item.sentiment === "Negative"
-            ? "red"
-            : "gray"
-        };">
-          ${item.sentiment}
-        </td>
-        <td>${new Date(item.createdAt).toLocaleString()}</td>
-      `;
-      tableBody.appendChild(row);
-    });
+      feedbackData.forEach((item) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td class="name-column">${item.name}</td>
+          <td class="email-column">${item.email}</td>
+          <td class="message-column">${item.message}</td>
+          <td style="color:${
+            item.sentiment === "Positive" ? "green" :
+            item.sentiment === "Negative" ? "red" : "gray"
+          };">${item.sentiment}</td>
+          <td>${new Date(item.createdAt).toLocaleString()}</td>
+        `;
+        tableBody.appendChild(row);
+      });
     }
-   
+
   } catch (error) {
     console.error("Error fetching admin data:", error);
     tableBody.innerHTML = `<tr><td colspan="5" class="placeholder">Failed to load feedback</td></tr>`;
-
   }
 });
