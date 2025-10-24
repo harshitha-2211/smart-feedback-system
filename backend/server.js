@@ -21,6 +21,8 @@ mongoose.connect(mongoURI)
 const feedbackRoutes = require("./routes/feedbackRoutes");
 app.use("/api/feedback", feedbackRoutes);
 
+app.use(express.static('frontend'));
+
 // Serve frontend (Render / Production)
 app.use(express.static(path.join(__dirname, "../frontend")));
 
