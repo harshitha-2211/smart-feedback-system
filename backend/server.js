@@ -16,11 +16,16 @@ app.use(express.json());
 //   }
 // });
 app.use(express.static('frontend'));
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 //MongoDB connection
-// const mongoURI= "mongodb+srv://admin:GSchar4@feedbackdb.ivknsns.mongodb.net/?retryWrites=true&w=majority&appName=feedbackDB";
+const mongoURI= "mongodb+srv://admin:GSchar4@feedbackdb.ivknsns.mongodb.net/?retryWrites=true&w=majority&appName=feedbackDB";
 mongoose.connect(
- "mongodb+srv://admin:GSchar4@feedbackdb.ivknsns.mongodb.net/?retryWrites=true&w=majority&appName=feedbackDB"
+ mongoURI
 )
 .then(() => console.log("MongoDB connected successfully"))
 .catch((err) => console.log("MongoDB connection error:", err));
@@ -28,6 +33,13 @@ mongoose.connect(
 //import routes
 const feedbackRoutes = require("./routes/feedbackRoutes");
 app.use("/api/feedback", feedbackRoutes);
+// Serve frontend files when deployed
+app.use(express.static(path.join(__dirname, "../frontend")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend", "index.html"));
+});
+
 // Basic route
 app.get("/", (req, res) => {
   res.send("Smart Feedback System backend is running!");
