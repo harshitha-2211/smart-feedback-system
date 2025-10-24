@@ -1,0 +1,135 @@
+/* Reset some defaults */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f7f7f7;
+}
+
+.feedback-container {
+  background-color: #fff;
+  padding: 30px 40px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  margin-top: -30px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 35px;
+  color: #333;
+}
+
+label {
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+.required {
+  color: red;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  resize: vertical;
+}
+
+textarea {
+  min-height: 100px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+button {
+  width: 40%;
+  display: block;
+  padding: 10px;
+  margin: 25px auto 0;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .form-container {
+    padding: 20px;
+  }
+
+  input, textarea, button {
+    font-size: 14px;
+  }
+}
+
+.result{
+  margin-top: 20px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#result {
+  opacity: 1;
+  transition: opacity 1s ease-out;
+}
+
+/* Sentiment result styling */
+/* #sentimentResult {
+  font-weight: bold;
+  font-size: 1.1rem;
+} */
+.sentiment-box {
+  margin-top: 15px;
+  padding: 10px 15px;
+  border-radius: 6px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.sentiment-box.show {
+  opacity: 1;
+}
+
+.sentiment-positive {
+  background-color: #d4edda;
+  color: #39cc5b;
+}
+
+.sentiment-negative {
+  background-color: #f8d7da;
+  color: #e62135;
+}
+
+.sentiment-neutral {
+  background-color: #2e2c26;
+  color: #86847e;
+}
+#sentimentResult {
+  opacity: 1;
+  transition: opacity 1s ease-out;
+}

@@ -1,0 +1,219 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family:"Poppins", Arial, Helvetica, sans-serif;
+}
+body{
+    background-color: #f4f6f9;
+    color:#333;
+}
+.navbar {
+  background-color: #2b36af;
+  color: white;
+  padding: 1.5rem 2rem;
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 10px;
+  flex-wrap: nowrap; /* stay in a single row */
+}
+
+.stats div {
+  flex: 1;
+  text-align: center;
+  padding: 8px;
+  border-radius: 10px;
+  background-color: #f5f5f5;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.stats > div:hover {
+  transform: translateY(-5px);
+}
+
+.stats h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.stats p {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.positive { border-top: 6px solid #22c55e; }
+.neutral { border-top: 6px solid #8a877b; }
+.negative { border-top: 6px solid #ef4444; }
+
+.chartsection {
+  width: 100%;
+  max-width: 650px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem;
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.chartsection h2 {
+  margin-bottom: 1rem;
+  color: #333;
+  font-size: 1.4rem;
+  font-weight: 600;
+  /* text-align: center; */
+}
+
+#sentimentChart {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  max-height: 300px;
+}
+
+.feedbacksection {
+  width: 100%;
+  max-width: 1000px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem;
+}
+
+.feedbacksection h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+.table-container {
+    max-height: 300px;       
+    overflow-y: auto;        
+    overflow-x: auto;        
+    border: 1px solid #ccc;
+}
+
+.feedbacktable {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+.feedbacktable th,
+.feedbacktable td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    white-space: normal; /* allow wrapping */
+    word-break: break-word; /* wrap long words if needed */
+    max-width: 300px; /* optional: limit column width for messages */
+}
+
+.feedbacktable th {
+  background: #f1f1f1;
+  font-weight: 600;
+  color: #333;
+}
+
+.feedbacktable tr:hover {
+  background-color: #f9fafb;
+}
+.table-container table thead {
+    position: sticky;
+    top: 0;
+    background: #f5f5f5;
+    z-index: 1;
+}
+.table-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 4px;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+@media (max-width: 768px) {
+  .stats {
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+  .stats div h3 {
+    font-size: 13px;
+    margin-bottom: 4px;
+  }
+  .stats div p {
+    font-size: 15px;
+  }
+  .navbar h1 {
+    font-size: 1.1rem;
+  }
+  .chartsection, .feedbacksection {
+    width: 95%;
+  }
+
+    .feedbacktable {
+        min-width: 600px; 
+    }
+    .feedbacktable td.name-column {
+        white-space: nowrap;    /* prevent wrapping */
+        overflow: hidden;       /* hide overflow */
+        text-overflow: ellipsis; /* show "..." if too long */
+        max-width: 120px;       /* adjust width as needed */
+    }
+    
+    .feedbacktable td.email-column{
+        white-space: normal;    
+        word-break: break-word; 
+        max-width: 250px;       
+    }
+    .feedbacktable td.message-column {
+        white-space: normal;    
+        word-break: break-word; 
+        max-width: 200px;       
+    }
+  #sentimentChart {
+    max-width: 320px;
+    max-height: 225px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+  /* .table-container {
+        max-width: 100%;
+        overflow-x: auto; } */

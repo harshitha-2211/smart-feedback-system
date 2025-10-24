@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Feedback System | Admin Dashboard</title>
+    <link rel="stylesheet" href="admin.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <h1>Smart Feedback System - Admin Dashboard</h1>
+    </nav>
+    <main class="dashboard">
+        <section class="stats">
+            <div class="positive">
+                <h3>Positive</h3>
+                <p id="positiveCount">--</p>
+            </div>
+             <div class="neutral">
+                <h3>Neutral</h3>
+                <p id="neutralCount">--</p>
+            </div>
+             <div class="negative">
+                <h3>Negative</h3>
+                <p id="negativeCount">--</p>
+            </div>
+        </section>
+
+        <div class="chartsection">
+            <h2>Sentiment Analysis</h2>
+            <canvas id="sentimentChart"></canvas>
+        </div>
+        
+        <section class="feedbacksection">
+            <h2>Feedback History</h2>
+            <div class="table-container">
+            <table class="feedbacktable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Message</th>
+                        <th>Sentiment</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody id="feedbacktablebody">
+                    <tr><td colspan="5" class="placeholder">Feedback entries will be shown here</td></tr>
+                </tbody>
+            </table>
+            </div>
+        </section>
+    </main>
+    <script src="admin.js"></script>
+</body>
+</html>
