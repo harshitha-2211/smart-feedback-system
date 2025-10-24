@@ -11,7 +11,7 @@ app.use(cors());
 app.use(express.json());
 
 // MongoDB connection
-const mongoURI = process.env.MONGO_URI;
+const mongoURI = "mongodb+srv://admin:GSchar4@feedbackdb.ivknsns.mongodb.net/?retryWrites=true&w=majority&appName=feedbackDB";
 
 mongoose.connect(mongoURI)
   .then(() => console.log("✅ MongoDB connected successfully"))
