@@ -1,4 +1,3 @@
-/* Reset some defaults */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -74,7 +73,6 @@ button:hover {
   background-color: #0056b3;
 }
 
-/* Responsive adjustments */
 @media (max-width: 600px) {
   .form-container {
     padding: 20px;
@@ -97,11 +95,6 @@ button:hover {
   transition: opacity 1s ease-out;
 }
 
-/* Sentiment result styling */
-/* #sentimentResult {
-  font-weight: bold;
-  font-size: 1.1rem;
-} */
 .sentiment-box {
   margin-top: 15px;
   padding: 10px 15px;

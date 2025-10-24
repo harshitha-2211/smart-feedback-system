@@ -8,20 +8,14 @@ const sentiment = new Sentiment();
 router.post("/", async (req, res) => {
   try {
     const { user_id, name, email, message } = req.body;
-
     if (!name || !email || !message) {
       return res.status(400).json({ error: "All fields are required" });
     }
 
-    // Run sentiment analysis on the message
     const result = sentiment.analyze(message);
-    // let sentimentLabel = "Neutral"; // default
-    // if (result.score > 0) sentimentLabel = "Positive";
-    // else if (result.score < 0) sentimentLabel = "Negative";
     const sentimentLabel =
       result.score > 0 ? "Positive" : result.score < 0 ? "Negative" : "Neutral";
 
-    // Save feedback with sentiment
     const newFeedback = new Feedback({
       user_id: user_id || null,
       name,
@@ -44,10 +38,9 @@ router.post("/", async (req, res) => {
   }
 });
 
-// GET summary of feedback (sentiment counts)
+// GET summary of feedback
 router.get("/summary", async (req, res) => {
   try {
-    // Aggregate counts by sentiment
     const summary = await Feedback.aggregate([
       {
         $match: { sentiment: { $ne: null } }  // ignore null sentiment
@@ -60,24 +53,22 @@ router.get("/summary", async (req, res) => {
       }
     ]);
 
-    // Convert aggregation result to simple object
     const counts = { Positive: 0, Negative: 0, Neutral: 0 };
     summary.forEach(item => {
       if (item._id && counts.hasOwnProperty(item._id)) {
         counts[item._id] = item.count;
       }
     });
-
     res.json(counts);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Server error" });
   }
 });
-// GET all feedback for admin table
+// GET all feedback for admin feedback tableee
 router.get("/all", async (req, res) => {
   try {
-    const feedbacks = await Feedback.find().sort({ createdAt: -1 }); // latest first
+    const feedbacks = await Feedback.find().sort({ createdAt: -1 }); 
     res.json(feedbacks);
   } catch (error) {
     console.error("Error fetching feedbacks:", error);

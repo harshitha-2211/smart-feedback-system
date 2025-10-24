@@ -33,7 +33,7 @@ body{
   justify-content: space-between;
   align-items: stretch;
   gap: 10px;
-  flex-wrap: nowrap; /* stay in a single row */
+  flex-wrap: nowrap; 
 }
 
 .stats div {
@@ -126,9 +126,9 @@ body{
     padding: 8px;
     text-align: left;
     border-bottom: 1px solid #ddd;
-    white-space: normal; /* allow wrapping */
-    word-break: break-word; /* wrap long words if needed */
-    max-width: 300px; /* optional: limit column width for messages */
+    white-space: normal; /* allow wrapping*/
+    word-break: break-word; /* wrap long words*/
+    max-width: 300px;
 }
 
 .feedbacktable th {
@@ -183,10 +183,10 @@ body{
         min-width: 600px; 
     }
     .feedbacktable td.name-column {
-        white-space: nowrap;    /* prevent wrapping */
-        overflow: hidden;       /* hide overflow */
-        text-overflow: ellipsis; /* show "..." if too long */
-        max-width: 120px;       /* adjust width as needed */
+        white-space: nowrap;    
+        overflow: hidden;       
+        text-overflow: ellipsis; 
+        max-width: 120px;
     }
     
     .feedbacktable td.email-column{
