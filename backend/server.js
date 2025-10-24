@@ -24,14 +24,14 @@ app.use("/api/feedback", feedbackRoutes);
 // Serve frontend (Render / Production)
 app.use(express.static(path.join(__dirname, "../frontend")));
 
-app.get("/*", (req, res) => {
+app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend", "index.html"));
 });
 
 // Basic route (for testing)
-app.get("/", (req, res) => {
-  res.send("Smart Feedback System backend is running!");
-});
+// app.get("/", (req, res) => {
+//   res.send("Smart Feedback System backend is running!");
+// });
 
 // Start server
 const PORT = process.env.PORT || 5000;
