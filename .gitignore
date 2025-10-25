@@ -1,0 +1,9 @@
+# Node dependencies
+node_modules/
+
+# Environment variables
+.env
+
+# Optional logs and cache
+*.log
+.DS_Store

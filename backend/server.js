@@ -2,14 +2,15 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const app = express();
+require('dotenv').config();
 
 app.use(cors());
 // Middleware
 app.use(express.json());
 
-// const mongoURI= "mongodb+srv://admin:GSchar4@feedbackdb.ivknsns.mongodb.net/?retryWrites=true&w=majority&appName=feedbackDB";
+// const mongoURI= "";
 mongoose.connect(
- "mongodb+srv://admin:GSchar4@feedbackdb.ivknsns.mongodb.net/?retryWrites=true&w=majority&appName=feedbackDB"
+ process.env.MONGO_URI
 )
 .then(() => console.log("MongoDB connected successfully"))
 .catch((err) => console.log("MongoDB connection error:", err));
